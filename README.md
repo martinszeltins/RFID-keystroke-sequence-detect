@@ -12,6 +12,8 @@
 
 ````
 const ioHook = require('iohook')
+const exec = require('child_process').exec
+
 let currentTime = 0
 let timeBetween = 0
 let keysPressed = ''
@@ -61,6 +63,12 @@ ioHook.on("keydown", event => {
 		timesAdded = 0
 	}
 
+	if (keysPressed.includes('Enter')) {
+		if (!isNaN(lastKeysPressed[0].key)) {
+			exec('notepad')
+		}
+	}
+	
 	console.log(keysPressed)
 })
 
